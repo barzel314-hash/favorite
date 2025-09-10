@@ -1,155 +1,283 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Favorite – Meine Website</title>
-  <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Optionales, dezentes Styling nur für die Publikationsliste */
-    #publikationen { margin-top: 1.5rem; }
-    #publikationen h3 { margin-top: 1.25rem; }
-    .pub-list { list-style: none; padding-left: 0; }
-    .pub-item { margin: 0 0 1rem 0; border-left: 3px solid #0ff; padding: .75rem 1rem; background:#1a1a1a; }
-    .pub-item a { color: #7fefff; text-decoration: none; }
-    .pub-meta { font-style: italic; color:#aaa; }
-    .pub-links a { margin-right: 1rem; }
+    :root { --bg:#111; --bg2:#1a1a1a; --card:#171717; --fg:#eee; --muted:#aaa; --link:#7fefff; --accent:#0ff; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    header{background:#222;padding:2rem 1rem;text-align:center}
+    header h1{margin:.2rem 0;color:var(--link)}
+    nav a{margin:0 .75rem;color:var(--link);text-decoration:none}
+    main{padding:1.25rem;max-width:1100px;margin:0 auto}
+    section{margin-bottom:2rem}
+    .tray{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:.75rem 0 1.25rem}
+    .tray .group{background:var(--card);padding:.75rem;border-radius:.75rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .tray label{display:inline-flex;gap:.4rem;align-items:center;font-size:.95rem}
+    .tray input[type="checkbox"]{accent-color:var(--accent)}
+    .tray input[type="search"]{background:var(--bg2);border:1px solid #333;color:var(--fg);padding:.5rem .75rem;border-radius:.5rem;min-width:220px}
+    .btn{background:#222;border:1px solid #333;color:var(--fg);padding:.5rem .9rem;border-radius:.6rem;cursor:pointer}
+    .btn:hover{border-color:#555}
+    .btn-toggle[aria-pressed="true"]{background:var(--accent);color:#003b3b;border-color:transparent}
+    .doc-list,.pub-list{list-style:none;padding-left:0;margin:0}
+    .doc-list li{margin:.4rem 0}
+    .doc-list a,.pub-item a{color:var(--link);text-decoration:none}
+    .doc-list a:hover,.pub-item a:hover{text-decoration:underline}
+    .pub-item{margin:.8rem 0;padding:.9rem 1rem;background:var(--bg2);border-left:3px solid var(--accent);border-radius:.25rem}
+    .meta{color:var(--muted);font-style:italic;margin:.15rem 0 .4rem}
+    .links a{margin-right:1rem}
+    footer{background:#222;text-align:center;padding:1rem;color:#aaa}
+    /* i18n: zeige/nutze nur aktive Sprache */
+    [data-lang="de"] .i18n.en{display:none}
+    [data-lang="en"] .i18n.de{display:none}
   </style>
 </head>
 <body>
   <header>
     <h1>Willkommen auf meiner Website 🎶🧮</h1>
-    <p>Ich bin Favorite – Theoretischer Physiker, Musiker/Song-Writer, Comedian, Enterteiner, Künstler.</p>
+    <p class="i18n de">Ich bin Favorite – Theoretischer Physiker, Musiker/Song-Writer, Comedian, Entertainer, Künstler.</p>
+    <p class="i18n en">I am Favorite — theoretical physicist, songwriter/musician, comedian, entertainer, artist.</p>
     <nav>
-      <a href="#forschung">Forschung</a>
-      <a href="#musik">Musik</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="#forschung" class="i18n de">Forschung</a>
+      <a href="#forschung" class="i18n en">Research</a>
+      <a href="#musik" class="i18n de">Musik</a>
+      <a href="#musik" class="i18n en">Music</a>
+      <a href="#kontakt" class="i18n de">Kontakt</a>
+      <a href="#kontakt" class="i18n en">Contact</a>
     </nav>
   </header>
 
   <main>
     <section id="forschung">
-      <h2>Forschung</h2>
-      <p>Hier präsentiere ich meine Arbeiten zu Quantenmechanik, Gravitation und Mathematik.</p>
+      <h2 class="i18n de">Forschung</h2>
+      <h2 class="i18n en">Research</h2>
+      <p class="i18n de">Hier präsentiere ich Arbeiten zu Quantenmechanik, Gravitation und Mathematik.</p>
+      <p class="i18n en">Here I present work on quantum mechanics, gravity, and mathematics.</p>
 
-      <!-- ▼▼▼ Publikationen (2018 → heute) ▼▼▼ -->
-      <section id="publikationen">
-        <h2>Publikationen</h2>
+      <!-- Sprachumschalter + Filterzeile -->
+      <div class="tray" role="toolbar" aria-label="Werkzeugleiste">
+        <button id="langToggle" class="btn btn-toggle" type="button" aria-pressed="false" aria-label="Sprache umschalten (Deutsch/English)">
+          <span class="i18n de">🇩🇪 Deutsch / 🇬🇧 English</span>
+          <span class="i18n en">🇬🇧 English / 🇩🇪 Deutsch</span>
+        </button>
 
-        <!-- 2018 -->
-        <h3>2018</h3>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <strong>Delayed Transition to Coherent Emission in Nanolasers with Extended Gain Media</strong><br/>
-            <span class="pub-meta">Phys. Rev. Applied <b>10</b>, 054055 (2018)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Zeigt neue Betriebsregime in Cavity-QED-Nanolasern mit erweitertem Gain-Medium: Die optische Kohärenz setzt deutlich oberhalb des Intensitätssprungs ein. Hohe β-Faktoren senken nicht automatisch die Leistungsanforderungen, da zur Unterdrückung des Spontanemissionsrauschens genügend stimulierte Emission nötig ist.
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://link.aps.org/pdf/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener">PDF</a>
-              <a href="https://arxiv.org/abs/1809.08976" target="_blank" rel="noopener">arXiv</a>
-            </span>
-          </li>
+        <div class="group" aria-label="Jahr filtern">
+          <strong class="i18n de">Jahr:</strong><strong class="i18n en">Year:</strong>
+          <!-- Jahr-Checkboxen -->
+          <label><input type="checkbox" class="f-year" value="2025" checked>2025</label>
+          <label><input type="checkbox" class="f-year" value="2024" checked>2024</label>
+          <label><input type="checkbox" class="f-year" value="2023" checked>2023</label>
+          <label><input type="checkbox" class="f-year" value="2022" checked>2022</label>
+          <label><input type="checkbox" class="f-year" value="2018" checked>2018</label>
+        </div>
 
-          <li class="pub-item">
-            <strong>A quantum optical study of thresholdless lasing features in high-β nitride nanobeam cavities</strong><br/>
-            <span class="pub-meta">Nature Communications <b>9</b>, 564 (2018)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Demonstriert quasi-schwellenloses Verhalten in GaN-Nanobeam-Lasern mit hohem β-Faktor. Trotz fehlender ausgeprägter Schwelle entsteht echte Laserkohärenz erst oberhalb einer Anregungsleistung; experimentell (RT) verifiziert und theoretisch modelliert.
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://www.nature.com/articles/s41467-018-02999-2" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://www.nature.com/articles/s41467-018-02999-2.pdf" target="_blank" rel="noopener">PDF</a>
-            </span>
-          </li>
+        <div class="group" aria-label="Journal filtern">
+          <strong>Journal:</strong>
+          <label><input type="checkbox" class="f-journal" value="epjqt" checked>EPJ Quantum Technology</label>
+          <label><input type="checkbox" class="f-journal" value="quantum" checked>Quantum</label>
+          <label><input type="checkbox" class="f-journal" value="pra" checked>Phys. Rev. A</label>
+          <label><input type="checkbox" class="f-journal" value="prd" checked>Phys. Rev. D</label>
+          <label><input type="checkbox" class="f-journal" value="prapplied" checked>Phys. Rev. Applied</label>
+          <label><input type="checkbox" class="f-journal" value="natcomm" checked>Nature Communications</label>
+        </div>
+
+        <input id="q" type="search" placeholder="Suche – Titel/Abstract …" aria-label="Publikationen durchsuchen" />
+        <button id="reset" class="btn" type="button">
+          <span class="i18n de">Filter zurücksetzen</span>
+          <span class="i18n en">Reset filters</span>
+        </button>
+      </div>
+
+      <!-- Dokumente -->
+      <section id="dokumente">
+        <h3 class="i18n de">Dokumente (PDF)</h3>
+        <h3 class="i18n en">Documents (PDF)</h3>
+        <ul class="doc-list">
+          <li><a href="docs/Lebenslauf_Roy_Barzel.pdf" target="_blank" rel="noopener noreferrer" download>Lebenslauf · CV (PDF)</a></li>
+          <li><a href="docs/Bachelorarbeit_Roy_Barzel.pdf" target="_blank" rel="noopener noreferrer" download>Bachelor-Arbeit (PDF)</a></li>
+          <li><a href="docs/Masterarbeit_Roy_Barzel.pdf" target="_blank" rel="noopener noreferrer" download>Master-Arbeit (PDF)</a></li>
+          <li><a href="docs/Dissertation_Roy_Barzel.pdf" target="_blank" rel="noopener noreferrer" download>Doktor-Arbeit · Thesis (PDF)</a></li>
+          <li><a href="docs/Publikationsliste_Roy_Barzel.pdf" target="_blank" rel="noopener noreferrer" download>Publikationsliste (PDF)</a></li>
         </ul>
+      </section>
 
-        <!-- 2022 -->
-        <h3>2022</h3>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <strong>Observer dependence of photon bunching: The influence of the relativistic redshift on Hong-Ou-Mandel interference</strong><br/>
-            <span class="pub-meta">Phys. Rev. D <b>105</b>, 105016 (2022)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Analysiert HOM-Interferenz im relativistischen Kontext: Ein gegenseitiger (Gravitations-/Bewegungs-)Rotverschiebungsfaktor zwischen Sender und Empfänger kann die Koinzidenzstatistik von Bunching zu Anti-Bunching kippen – ein echtes Quantentest-Szenario für ART-Effekte.
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://link.aps.org/doi/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://link.aps.org/pdf/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener">PDF</a>
-              <a href="https://arxiv.org/abs/2202.07950" target="_blank" rel="noopener">arXiv</a>
-            </span>
+      <!-- Publikationen -->
+      <section id="publikationen" aria-live="polite">
+        <h3 class="i18n de">Publikationen</h3>
+        <h3 class="i18n en">Publications</h3>
+        <ul class="pub-list" id="pubList">
+          <!-- 2025 -->
+          <li class="pub-item" data-year="2025" data-journal="epjqt">
+            <strong>Pulse shape optimization against Doppler shifts and delays in optical quantum communication</strong>
+            <div class="meta">EPJ Quantum Technology (2025)</div>
+            <p class="i18n de">Zeigt, wie spektrale Pulsformen (z.&nbsp;B. Gauß, Lorentz) die Robustheit optischer Links gegen Doppler-Verschiebung und Verzögerungen prägen; liefert Design-Leitlinien und Kapazitätsgrenzen.</p>
+            <p class="i18n en">Shows how spectral pulse shapes (e.g., Gaussian, Lorentzian) affect robustness against Doppler shifts and delays in optical links; provides design guidelines and capacity limits.</p>
+            <div class="links">
+              <a href="https://epjquantumtechnology.springeropen.com/articles/10.1140/epjqt/s40507-025-00321-w" target="_blank" rel="noopener noreferrer">Article &amp; PDF</a>
+            </div>
           </li>
-        </ul>
 
-        <!-- 2023 -->
-        <h3>2023</h3>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <strong>Role of indistinguishability and entanglement in Hong-Ou-Mandel interference and finite-bandwidth effects of frequency-entangled photons</strong><br/>
-            <span class="pub-meta">Phys. Rev. A <b>107</b>, 032205 (2023)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Theoretische Verbindung von Ununterscheidbarkeit, Verschränkung und Entanglement-Monogamie in HOM-Experimenten; zeigt, wie endliche spektrale Bandbreite frequenz-verschränkter Photonen das Interferenzsignal prägt.
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://link.aps.org/doi/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://link.aps.org/pdf/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener">PDF</a>
-              <a href="https://arxiv.org/abs/2202.07522" target="_blank" rel="noopener">arXiv</a>
-            </span>
+          <!-- 2024 -->
+          <li class="pub-item" data-year="2024" data-journal="quantum">
+            <strong>Entanglement dynamics of photon pairs and quantum memories in the gravitational field of the earth</strong>
+            <div class="meta">Quantum 8, 1273 (2024)</div>
+            <p class="i18n de">Analysiert gravitationsinduzierte Verschränkungsdynamik für Photonen &amp; Quanten-Speicher (MZ/HOM); Machbarkeitsstudie für Nachweise mit heutiger Technologie.</p>
+            <p class="i18n en">Analyzes gravity-induced entanglement dynamics for photons and quantum memories (MZ/HOM); feasibility for observation with current technology.</p>
+            <div class="links">
+              <a href="https://quantum-journal.org/papers/q-2024-02-29-1273/" target="_blank" rel="noopener noreferrer">Article</a>
+              <a href="https://quantum-journal.org/papers/q-2024-02-29-1273/pdf/" target="_blank" rel="noopener noreferrer">PDF</a>
+              <a href="https://arxiv.org/abs/2209.02099" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
           </li>
-        </ul>
 
-        <!-- 2024 -->
-        <h3>2024</h3>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <strong>Entanglement dynamics of photon pairs and quantum memories in the gravitational field of the earth</strong><br/>
-            <span class="pub-meta">Quantum <b>8</b>, 1273 (2024)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Erste detaillierte Analyse gravitationsinduzierter Verschränkungsdynamik (ED) für Photonen &amp; Quanten-Speicher in MZ- und HOM-Interferometern; liefert Machbarkeitsstudie für Nachweise mit heutiger Technologie (insb. HOM mit Speichern).
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://doi.org/10.22331/q-2024-02-29-1273" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://quantum-journal.org/papers/q-2024-02-29-1273/pdf/" target="_blank" rel="noopener">PDF</a>
-              <a href="https://arxiv.org/abs/2209.02099" target="_blank" rel="noopener">arXiv</a>
-            </span>
+          <!-- 2023 -->
+          <li class="pub-item" data-year="2023" data-journal="pra">
+            <strong>Role of indistinguishability and entanglement in Hong-Ou-Mandel interference and finite-bandwidth effects of frequency-entangled photons</strong>
+            <div class="meta">Phys. Rev. A 107, 032205 (2023)</div>
+            <p class="i18n de">Verbindet Ununterscheidbarkeit, Verschränkung und endliche Bandbreiten in HOM-Experimenten und quantifiziert deren Einfluss auf die Interferenz.</p>
+            <p class="i18n en">Relates indistinguishability, entanglement, and finite bandwidth in HOM experiments and quantifies their impact on interference.</p>
+            <div class="links">
+              <a href="https://link.aps.org/doi/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener noreferrer">Article</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener noreferrer">PDF</a>
+              <a href="https://arxiv.org/abs/2202.07522" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
           </li>
-        </ul>
 
-        <!-- 2025 -->
-        <h3>2025</h3>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <strong>Pulse shape optimization against Doppler shifts and delays in optical quantum communication</strong><br/>
-            <span class="pub-meta">EPJ Quantum Technology <b>12</b>, 24 (2025)</span><br/>
-            <span>
-              Kurzzusammenfassung (DE): Zeigt, wie die spektrale Pulsform (z.&nbsp;B. Gauß, einfach/zweifach-seitige Lorentz-Profile) die Robustheit optischer CV-QKD gegen Doppler-Verschiebungen und Verzögerungen beeinflusst; liefert Kapazitätsgrenzen und Design-Leitlinien.
-            </span><br/>
-            <span class="pub-links">
-              <a href="https://epjquantumtechnology.springeropen.com/articles/10.1140/epjqt/s40507-025-00321-w" target="_blank" rel="noopener">Artikel</a>
-              <a href="https://epjquantumtechnology.springeropen.com/counter/pdf/10.1140/epjqt/s40507-025-00321-w.pdf" target="_blank" rel="noopener">PDF</a>
-            </span>
+          <!-- 2022 -->
+          <li class="pub-item" data-year="2022" data-journal="prd">
+            <strong>Observer dependence of photon bunching: The influence of the relativistic redshift on Hong-Ou-Mandel interference</strong>
+            <div class="meta">Phys. Rev. D 105, 105016 (2022)</div>
+            <p class="i18n de">Zeigt, dass Rotverschiebung zwischen Sender/Empfänger HOM-Koinzidenzen von Bunching zu Anti-Bunching kippen kann – Quantentest für ART-Effekte.</p>
+            <p class="i18n en">Shows that redshift between sender/receiver can flip HOM coincidences from bunching to anti-bunching — a quantum test for GR effects.</p>
+            <div class="links">
+              <a href="https://link.aps.org/doi/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener noreferrer">Article</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener noreferrer">PDF</a>
+              <a href="https://arxiv.org/abs/2202.07950" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </li>
+
+          <!-- 2018 -->
+          <li class="pub-item" data-year="2018" data-journal="natcomm">
+            <strong>A quantum optical study of thresholdless lasing features in high-β nitride nanobeam cavities</strong>
+            <div class="meta">Nature Communications 9, 564 (2018)</div>
+            <p class="i18n de">Demonstriert quasi-schwellenloses Verhalten in GaN-Nanobeam-Lasern (hoher β-Faktor); Kohärenz entsteht erst oberhalb einer Anregungsleistung.</p>
+            <p class="i18n en">Demonstrates quasi-thresholdless behavior in GaN nanobeam lasers (high β factor); coherence emerges only above a certain excitation level.</p>
+            <div class="links">
+              <a href="https://www.nature.com/articles/s41467-018-02999-2" target="_blank" rel="noopener noreferrer">Article &amp; PDF</a>
+            </div>
+          </li>
+
+          <li class="pub-item" data-year="2018" data-journal="prapplied">
+            <strong>Delayed Transition to Coherent Emission in Nanolasers with Extended Gain Media</strong>
+            <div class="meta">Phys. Rev. Applied 10, 054055 (2018)</div>
+            <p class="i18n de">Findet neue Betriebsregime in Cavity-QED-Nanolasern: Kohärenz setzt deutlich oberhalb des Intensitätssprungs ein; hoher β senkt Bedarf nicht automatisch.</p>
+            <p class="i18n en">Finds new operating regimes in cavity-QED nanolasers: coherence occurs well above the intensity knee; high β does not automatically reduce required power.</p>
+            <div class="links">
+              <a href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener noreferrer">Article</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener noreferrer">PDF</a>
+              <a href="https://arxiv.org/abs/1809.08976" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
           </li>
         </ul>
       </section>
-      <!-- ▲▲▲ Publikationen ▲▲▲ -->
-
     </section>
 
     <section id="musik">
-      <h2>Musik</h2>
-      <p>Meine Texte, Raps und kreativen Projekte – direkt aus dem Herzen.</p>
+      <h2 class="i18n de">Musik</h2><h2 class="i18n en">Music</h2>
+      <p class="i18n de">Meine Texte, Raps und kreativen Projekte – direkt aus dem Herzen.</p>
+      <p class="i18n en">My lyrics, rap, and creative projects.</p>
     </section>
 
     <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p>Schreib mir an: <a href="mailto:barzel314@gmail.com">barzel314@gmail.com</a></p>
+      <h2 class="i18n de">Kontakt</h2><h2 class="i18n en">Contact</h2>
+      <p><a href="mailto:barzel314@gmail.com">barzel314@gmail.com</a></p>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Favorite</p>
   </footer>
+
+  <script>
+    // --- Sprachumschalter (accessible toggle) ---
+    const html = document.documentElement;
+    const langToggle = document.getElementById('langToggle');
+    function setLang(lang){
+      html.setAttribute('lang', lang);
+      html.setAttribute('data-lang', lang);
+      localStorage.setItem('fav_lang', lang);
+      langToggle.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    }
+    // init language from storage or browser
+    (function(){
+      const saved = localStorage.getItem('fav_lang');
+      const initial = saved || (navigator.language || 'de').startsWith('de') ? 'de' : 'en';
+      setLang(initial);
+    })();
+    langToggle.addEventListener('click', ()=>{
+      const next = html.getAttribute('data-lang') === 'de' ? 'en' : 'de';
+      setLang(next);
+    });
+
+    // --- Filter (Jahr/Journal) + Volltextsuche ---
+    const yearBoxes = [...document.querySelectorAll('.f-year')];
+    const journalBoxes = [...document.querySelectorAll('.f-journal')];
+    const searchInput = document.getElementById('q');
+    const resetBtn = document.getElementById('reset');
+    const items = [...document.querySelectorAll('#pubList .pub-item')];
+
+    function getCheckedValues(nodes){
+      const v = nodes.filter(n=>n.checked).map(n=>n.value);
+      return v.length ? v : null; // null = keine Einschränkung
+    }
+    function matchesQuery(el, q){
+      if(!q) return true;
+      q = q.toLowerCase();
+      const text = el.textContent.toLowerCase();
+      return text.includes(q);
+    }
+    function applyFilters(){
+      const years = getCheckedValues(yearBoxes);
+      const journals = getCheckedValues(journalBoxes);
+      const q = searchInput.value.trim();
+
+      items.forEach(li=>{
+        const y = li.getAttribute('data-year');
+        const j = li.getAttribute('data-journal');
+        const yearOk = !years || years.includes(y);
+        const journalOk = !journals || journals.includes(j);
+        const queryOk = matchesQuery(li, q);
+        li.style.display = (yearOk && journalOk && queryOk) ? '' : 'none';
+      });
+
+      // Persist Auswahl
+      localStorage.setItem('fav_years', JSON.stringify(years));
+      localStorage.setItem('fav_journals', JSON.stringify(journals));
+      localStorage.setItem('fav_q', q);
+    }
+    // init from storage
+    (function(){
+      try{
+        const ys = JSON.parse(localStorage.getItem('fav_years')||'null');
+        const js = JSON.parse(localStorage.getItem('fav_journals')||'null');
+        const q = localStorage.getItem('fav_q')||'';
+        if(ys){ yearBoxes.forEach(b=>b.checked = ys.includes(b.value)); }
+        if(js){ journalBoxes.forEach(b=>b.checked = js.includes(b.value)); }
+        if(q){ searchInput.value = q; }
+      }catch{}
+      applyFilters();
+    })();
+
+    [...yearBoxes, ...journalBoxes].forEach(b=>b.addEventListener('change', applyFilters));
+    searchInput.addEventListener('input', applyFilters);
+    resetBtn.addEventListener('click', ()=>{
+      yearBoxes.forEach(b=>b.checked = true);
+      journalBoxes.forEach(b=>b.checked = true);
+      searchInput.value = '';
+      applyFilters();
+    });
+  </script>
 </body>
 </html>
-
