@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Favorite – Meine Website</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Optionales, dezentes Styling nur für die Publikationsliste */
+    #publikationen { margin-top: 1.5rem; }
+    #publikationen h3 { margin-top: 1.25rem; }
+    .pub-list { list-style: none; padding-left: 0; }
+    .pub-item { margin: 0 0 1rem 0; border-left: 3px solid #0ff; padding: .75rem 1rem; background:#1a1a1a; }
+    .pub-item a { color: #7fefff; text-decoration: none; }
+    .pub-meta { font-style: italic; color:#aaa; }
+    .pub-links a { margin-right: 1rem; }
+  </style>
 </head>
 <body>
   <header>
@@ -21,6 +31,109 @@
     <section id="forschung">
       <h2>Forschung</h2>
       <p>Hier präsentiere ich meine Arbeiten zu Quantenmechanik, Gravitation und Mathematik.</p>
+
+      <!-- ▼▼▼ Publikationen (2018 → heute) ▼▼▼ -->
+      <section id="publikationen">
+        <h2>Publikationen</h2>
+
+        <!-- 2018 -->
+        <h3>2018</h3>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <strong>Delayed Transition to Coherent Emission in Nanolasers with Extended Gain Media</strong><br/>
+            <span class="pub-meta">Phys. Rev. Applied <b>10</b>, 054055 (2018)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Zeigt neue Betriebsregime in Cavity-QED-Nanolasern mit erweitertem Gain-Medium: Die optische Kohärenz setzt deutlich oberhalb des Intensitätssprungs ein. Hohe β-Faktoren senken nicht automatisch die Leistungsanforderungen, da zur Unterdrückung des Spontanemissionsrauschens genügend stimulierte Emission nötig ist.
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevApplied.10.054055" target="_blank" rel="noopener">PDF</a>
+              <a href="https://arxiv.org/abs/1809.08976" target="_blank" rel="noopener">arXiv</a>
+            </span>
+          </li>
+
+          <li class="pub-item">
+            <strong>A quantum optical study of thresholdless lasing features in high-β nitride nanobeam cavities</strong><br/>
+            <span class="pub-meta">Nature Communications <b>9</b>, 564 (2018)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Demonstriert quasi-schwellenloses Verhalten in GaN-Nanobeam-Lasern mit hohem β-Faktor. Trotz fehlender ausgeprägter Schwelle entsteht echte Laserkohärenz erst oberhalb einer Anregungsleistung; experimentell (RT) verifiziert und theoretisch modelliert.
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://www.nature.com/articles/s41467-018-02999-2" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://www.nature.com/articles/s41467-018-02999-2.pdf" target="_blank" rel="noopener">PDF</a>
+            </span>
+          </li>
+        </ul>
+
+        <!-- 2022 -->
+        <h3>2022</h3>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <strong>Observer dependence of photon bunching: The influence of the relativistic redshift on Hong-Ou-Mandel interference</strong><br/>
+            <span class="pub-meta">Phys. Rev. D <b>105</b>, 105016 (2022)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Analysiert HOM-Interferenz im relativistischen Kontext: Ein gegenseitiger (Gravitations-/Bewegungs-)Rotverschiebungsfaktor zwischen Sender und Empfänger kann die Koinzidenzstatistik von Bunching zu Anti-Bunching kippen – ein echtes Quantentest-Szenario für ART-Effekte.
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://link.aps.org/doi/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevD.105.105016" target="_blank" rel="noopener">PDF</a>
+              <a href="https://arxiv.org/abs/2202.07950" target="_blank" rel="noopener">arXiv</a>
+            </span>
+          </li>
+        </ul>
+
+        <!-- 2023 -->
+        <h3>2023</h3>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <strong>Role of indistinguishability and entanglement in Hong-Ou-Mandel interference and finite-bandwidth effects of frequency-entangled photons</strong><br/>
+            <span class="pub-meta">Phys. Rev. A <b>107</b>, 032205 (2023)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Theoretische Verbindung von Ununterscheidbarkeit, Verschränkung und Entanglement-Monogamie in HOM-Experimenten; zeigt, wie endliche spektrale Bandbreite frequenz-verschränkter Photonen das Interferenzsignal prägt.
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://link.aps.org/doi/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://link.aps.org/pdf/10.1103/PhysRevA.107.032205" target="_blank" rel="noopener">PDF</a>
+              <a href="https://arxiv.org/abs/2202.07522" target="_blank" rel="noopener">arXiv</a>
+            </span>
+          </li>
+        </ul>
+
+        <!-- 2024 -->
+        <h3>2024</h3>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <strong>Entanglement dynamics of photon pairs and quantum memories in the gravitational field of the earth</strong><br/>
+            <span class="pub-meta">Quantum <b>8</b>, 1273 (2024)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Erste detaillierte Analyse gravitationsinduzierter Verschränkungsdynamik (ED) für Photonen &amp; Quanten-Speicher in MZ- und HOM-Interferometern; liefert Machbarkeitsstudie für Nachweise mit heutiger Technologie (insb. HOM mit Speichern).
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://doi.org/10.22331/q-2024-02-29-1273" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://quantum-journal.org/papers/q-2024-02-29-1273/pdf/" target="_blank" rel="noopener">PDF</a>
+              <a href="https://arxiv.org/abs/2209.02099" target="_blank" rel="noopener">arXiv</a>
+            </span>
+          </li>
+        </ul>
+
+        <!-- 2025 -->
+        <h3>2025</h3>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <strong>Pulse shape optimization against Doppler shifts and delays in optical quantum communication</strong><br/>
+            <span class="pub-meta">EPJ Quantum Technology <b>12</b>, 24 (2025)</span><br/>
+            <span>
+              Kurzzusammenfassung (DE): Zeigt, wie die spektrale Pulsform (z.&nbsp;B. Gauß, einfach/zweifach-seitige Lorentz-Profile) die Robustheit optischer CV-QKD gegen Doppler-Verschiebungen und Verzögerungen beeinflusst; liefert Kapazitätsgrenzen und Design-Leitlinien.
+            </span><br/>
+            <span class="pub-links">
+              <a href="https://epjquantumtechnology.springeropen.com/articles/10.1140/epjqt/s40507-025-00321-w" target="_blank" rel="noopener">Artikel</a>
+              <a href="https://epjquantumtechnology.springeropen.com/counter/pdf/10.1140/epjqt/s40507-025-00321-w.pdf" target="_blank" rel="noopener">PDF</a>
+            </span>
+          </li>
+        </ul>
+      </section>
+      <!-- ▲▲▲ Publikationen ▲▲▲ -->
+
     </section>
 
     <section id="musik">
@@ -39,3 +152,4 @@
   </footer>
 </body>
 </html>
+
